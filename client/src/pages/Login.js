@@ -47,7 +47,7 @@ const Login = () => {
           <div className="card card-body mt-5">
             <h2 className="text-center">LOGIN</h2>
             <form onSubmit={e => handleSubmit(e)}>
-              <div className="form-group">
+              <div className="form-group mb-2">
                 <label htmlFor="email">Email</label>
                 <input
                  type="email" 
@@ -59,7 +59,16 @@ const Login = () => {
                  value={email}
                  placeholder="someone@example.com"/>
               </div>
-              <div className="form-group">
+
+              <div className="form-group mb-2">
+                <label htmlFor="email">Role</label>
+                <select name="role" onChange={e => handleChange(e)} className="form-select">
+                  <option value="admin">Admin</option>
+                  <option value="mentor">Mentor</option>
+                  <option value="student">Student</option>
+                </select>
+              </div>
+              <div className="form-group mb-2">
                 <label htmlFor="password">Password</label>
                 <input
                  type="password" 

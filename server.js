@@ -31,9 +31,7 @@ const isAuthenticated = async (req, res, next) => {
     token = req.headers.authorization.split(' ')[1];
   }
   console.log(token)
-  if (!token) {
-    return res.status(401).json({ msg: 'Unauthorized', status: 401 });
-  }
+  if (!token) return res.status(401).json({ msg: 'Unauthorized', status: 401 });
 
   try {
     // Verify token
@@ -57,6 +55,7 @@ app.post('/api/users/register',  async (req, res) => {
     const name = req.body.name
     const email = req.body.email
     const password = req.body.password
+    const role = req.body.role
 
     const userExist = await User.findOne({email:email});
     if (userExist) return res.status(400).json({msg: 'user already registered'});
@@ -64,7 +63,9 @@ app.post('/api/users/register',  async (req, res) => {
     const user = User({
       name,
       email,
-      password
+      password,
+      userType:role,
+      isAdmin: role === "admin" ?  true : false
     })
 
     await user.save();
@@ -94,6 +95,7 @@ app.post('/api/users/login',  async (req, res) => {
   try {
     const email = req.body.email
     const password = req.body.password
+    const role = req.body.role
 
     const user = await User.findOne({email:email});
 

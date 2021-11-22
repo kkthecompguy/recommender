@@ -77,6 +77,14 @@ const Register = () => {
                  value={email}
                  placeholder="someone@example.com"/>
               </div>
+              <div className="form-group mb-2">
+                <label htmlFor="email">Role</label>
+                <select name="role" onChange={e => handleChange(e)} className="form-select">
+                  <option value="admin">Admin</option>
+                  <option value="mentor">Mentor</option>
+                  <option value="student">Student</option>
+                </select>
+              </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <input
